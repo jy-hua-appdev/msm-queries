@@ -1,0 +1,76 @@
+<h1>
+  Actor #<%= @the_actor.id %> details
+</h1>
+
+<a href="/actors" class="btn btn-block btn-outline-secondary">
+  Go back
+</a>
+
+&nbsp;
+
+<hr>
+
+<dl>
+  <dt>
+    Name
+  </dt>
+  <dd>
+    <%= @the_actor.name%>
+  </dd>
+
+  <dt>
+    Year
+  </dt>
+  <dd>
+    <%= @the_actor.dob %>
+  </dd>
+
+  <dt>
+    Bio
+  </dt>
+  <dd>
+    <%= @the_actor.bio %>
+  </dd>
+
+  <dt>
+    Image
+  </dt>
+  <dd>
+    <img src="<%= @the_actor.image %>" style="width:250px;">
+  </dd>
+
+  <dt>
+    Characters
+  </dt>
+  <% @actor_characters.each do |a_thing| %>
+    <li>
+      <%= a_thing.name %>
+    </li>
+  <% end %>
+
+  <dt>
+    Directors
+  </dt>
+  <% @actor_characters.each do |a_thing| %>
+    <li>
+      <%= Director.where({ :id => a_thing.movie_id }).first.name %>
+    </li>
+  <% end %>
+
+
+  <dt>
+    Created at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@the_actor.created_at) %> ago
+  </dd>
+
+  <dt>
+    Updated at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@the_actor.updated_at) %> ago
+  </dd>
+</dl>
+
+<hr>
