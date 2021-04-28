@@ -61,59 +61,20 @@
 <h2>Filmography</h2>
 
 <table border="1">
+<% @director_movies.each do |a_movie| %>
   <tr>
-    <th>
-      ID
-    </th>
-
-    <th>
-      Image
-    </th>
-
-    <th>
-      Title
-    </th>
-
-    <th>
-      Year
-    </th>
-
-    <th>
-      Director
-    </th>
-
-    <th>
-    </th>
-  </tr>
-
-  <tr>
+    <td><%= a_movie.id %></td>
     <td>
-      1
+      <img src="<%= a_movie.image %>">
     </td>
-
+    <td><%= a_movie.title %></td>
+    <td><%= a_movie.year %></td>
+    <td><%= Director.where({ :id => a_movie.director_id}).first.name %></td>
     <td>
-      <img src="https://image.tmdb.org/t/p/w500/5KCVkau1HEl7ZzfPsKAPM0sMiKc.jpg" style="width:250px;">
-    </td>
-
-    <td>
-      The Shawshank Redemption
-    </td>
-
-    <td>
-      1994
-    </td>
-
-    <td>
-      Frank Darabont
-    </td>
-
-    <td>
-      <a href="/movies/1">
+      <a href="/movies/<%= a_movie.id %>">
         Show details
       </a>
     </td>
   </tr>
+<% end %>
 </table>
-
-  </body>
-</html>
